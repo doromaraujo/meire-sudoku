@@ -36,4 +36,8 @@ class GameViewModel : ViewModel() {
             selectedCell = null
         }
     }
+
+    fun selectCell(row: Int, column: Int) {
+        selectedCell = Pair(row, column)
+    }
 }

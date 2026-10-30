@@ -40,6 +40,8 @@ class MainActivity : ComponentActivity() {
                     } else {
                         SudokuGrid(
                             board = board,
+                            selectedCell = viewModel.selectedCell,
+                            onCellClick = viewModel::selectCell,
                             modifier = Modifier.padding(innerPadding).padding(16.dp))
                     }
                 }
