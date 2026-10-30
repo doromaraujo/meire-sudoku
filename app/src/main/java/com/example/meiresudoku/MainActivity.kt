@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
@@ -17,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.meiresudoku.ui.GameViewModel
+import com.example.meiresudoku.ui.NumberPad
 import com.example.meiresudoku.ui.SudokuGrid
 import com.example.meiresudoku.ui.theme.MeireSudokuTheme
 
@@ -32,17 +34,28 @@ class MainActivity : ComponentActivity() {
 
                     if (board == null) {
                         Box(
-                            modifier = Modifier.fillMaxSize().padding(innerPadding),
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(innerPadding),
                             contentAlignment = Alignment.Center
                         ) {
                             CircularProgressIndicator()
                         }
                     } else {
-                        SudokuGrid(
-                            board = board,
-                            selectedCell = viewModel.selectedCell,
-                            onCellClick = viewModel::selectCell,
-                            modifier = Modifier.padding(innerPadding).padding(16.dp))
+                        Column {
+                            SudokuGrid(
+                                board = board,
+                                selectedCell = viewModel.selectedCell,
+                                onCellClick = viewModel::selectCell,
+                                modifier = Modifier
+                                    .padding(innerPadding)
+                                    .padding(16.dp)
+                            )
+                            NumberPad(
+                                onNumberClick = viewModel::enterValue,
+                                onEraseClick = viewModel::eraseValue
+                            )
+                        }
                     }
                 }
             }

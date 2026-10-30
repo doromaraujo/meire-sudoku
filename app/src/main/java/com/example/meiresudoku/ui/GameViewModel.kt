@@ -40,4 +40,22 @@ class GameViewModel : ViewModel() {
     fun selectCell(row: Int, column: Int) {
         selectedCell = Pair(row, column)
     }
+
+    fun isClue(row: Int, column: Int): Boolean = puzzle?.board?.isCellEmpty(row, column) == false
+
+    fun enterValue(value: Int) {
+        val (row, column) = selectedCell ?: return
+        val current = board ?: return
+        if (isClue(row, column)) return
+
+        board = current.copy().apply { setCellValue(row, column, value) }
+    }
+
+    fun eraseValue() {
+        val (row, column) = selectedCell ?: return
+        val current = board ?: return
+        if (isClue(row, column)) return
+
+        board = current.copy().apply { clearCell(row, column) }
+    }
 }
