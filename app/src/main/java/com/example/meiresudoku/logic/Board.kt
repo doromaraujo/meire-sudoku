@@ -56,6 +56,16 @@ class Board {
         return true
     }
 
+    fun findEmptyCell(): Pair<Int, Int>? {
+        for (row in 0 until MATRIX_SIZE) {
+            for (column in 0 until MATRIX_SIZE) {
+                if (isCellEmpty(row, column)) return Pair(row, column)
+            }
+        }
+
+        return null
+    }
+
     override fun toString(): String {
         val sb = StringBuilder()
 
