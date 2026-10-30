@@ -20,7 +20,7 @@ class Board {
         checkIndex(row)
         checkIndex(column)
 
-        cells[row][column] = EMPTY_VALUE;
+        cells[row][column] = EMPTY_VALUE
     }
 
     fun getCellValue(row: Int, column: Int): Int {
@@ -64,6 +64,14 @@ class Board {
         }
 
         return null
+    }
+
+    fun copy(): Board {
+        val newBoard = Board()
+        for (row in 0 until MATRIX_SIZE) {
+            cells[row].copyInto(newBoard.cells[row])
+        }
+        return newBoard
     }
 
     override fun toString(): String {

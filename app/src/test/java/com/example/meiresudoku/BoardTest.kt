@@ -16,4 +16,15 @@ class BoardTest {
         assertFalse(board.canPlace(2, 2, 5))
         assertTrue(board.canPlace(3, 2, 5))
     }
+
+    @Test
+    fun copy_isDifferentFromSource() {
+        val original = Board()
+        original.setCellValue(0, 0, 5)
+
+        val copy = original.copy()
+        original.clearCell(0, 0)
+
+        assertEquals(5, copy.getCellValue(0, 0))   // the copy wasn't affected
+    }
 }

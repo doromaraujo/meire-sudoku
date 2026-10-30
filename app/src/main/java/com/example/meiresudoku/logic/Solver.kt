@@ -1,8 +1,6 @@
 package com.example.meiresudoku.logic
 
-import kotlin.random.Random
-
-class Solver {
+object Solver {
     fun solve(board: Board): Boolean {
         val (row, column) = board.findEmptyCell() ?: return true
 
