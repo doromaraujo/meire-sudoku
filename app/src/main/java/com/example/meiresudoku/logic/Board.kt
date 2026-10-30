@@ -1,12 +1,6 @@
 package com.example.meiresudoku.logic
 
 class Board {
-    companion object {
-        const val MATRIX_SIZE = 9
-        const val EMPTY_VALUE = 0
-        const val BLOCK_SIZE = 3
-    }
-
     private val cells = Array(MATRIX_SIZE) { IntArray(MATRIX_SIZE) }
 
     private fun checkIndex(index: Int) {
@@ -36,7 +30,7 @@ class Board {
         return cells[row][column]
     }
 
-    fun isEmpty(row: Int, column: Int): Boolean = getCellValue(row, column) == EMPTY_VALUE
+    fun isCellEmpty(row: Int, column: Int): Boolean = getCellValue(row, column) == EMPTY_VALUE
 
     fun canPlace(row: Int, column: Int, value: Int): Boolean {
         checkIndex(row)
@@ -60,5 +54,24 @@ class Board {
         }
 
         return true
+    }
+
+    override fun toString(): String {
+        val sb = StringBuilder()
+
+        for (row in 0 until MATRIX_SIZE) {
+            if (row % BLOCK_SIZE == 0 && row != 0) sb.appendLine("------+-------+------")
+
+            for (column in 0 until MATRIX_SIZE) {
+                if (column % BLOCK_SIZE == 0 && column != 0) sb.append("| ")
+
+                val value = cells[row][column]
+                sb.append(if (value == EMPTY_VALUE) ". " else "$value ")
+            }
+
+            sb.appendLine()
+        }
+
+        return sb.toString()
     }
 }
