@@ -10,7 +10,7 @@ class SolverTest {
     @Test
     fun solve_fillsEmptyBoard() {
         val board = Board()
-        assertTrue(Solver().solve(board))
+        assertTrue(Solver.solve(board))
 
         println(board)
     }
